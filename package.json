@@ -5,9 +5,10 @@
     "express": "3.1.x",
     "jade": "*",
     "stylus": "*",
+    "model": "~0.2.5",
     "nib": "*"
   },
   "engines": {
-     "npm":  "1.2.x"
+    "npm": "1.2.x"
   }
 }

@@ -176,3 +176,13 @@ footer {
   padding-top: 5px;
   font-size: 13px;
 }
+.post__item {
+  margin: 20px 0;
+}
+.post__title {
+  display: block;
+  font-size: 1.4em;
+}
+.post__body {
+  color: #808080;
+}
