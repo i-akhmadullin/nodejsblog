@@ -12,7 +12,7 @@ var Post = db.sequelize.define('Post', {
 });
 
 exports.create = function(req, res){
-  Post.create({ title: 'Dummy Post Title' }, { content: 'Dummy Post Content' }).success(function(post, created) {
+  Post.create({ title: 'Dummy Post Title' , content: 'Dummy Post Content' }).success(function(post, created) {
     console.log(post.values);
     console.log(created);
     res.render('index', { title: 'Posts', posts: post });
@@ -23,7 +23,7 @@ exports.create = function(req, res){
 };
 
 exports.list = function(req, res){
-  Post.create({ title: 'Dummy Post Title' }, { content: 'Dummy Post Content' }).success(function(post, created) {
+  Post.findOrCreate({ title: 'Dummy Post Title' , content: 'Dummy Post Content' }).success(function(post, created) {
     console.log(post.values);
     console.log(created);
     res.render('index', { title: 'Posts', posts: post });
