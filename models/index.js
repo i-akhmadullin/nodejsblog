@@ -1,6 +1,5 @@
 if (!global.hasOwnProperty('db')) {
     var Sequelize   = require('sequelize-postgres').sequelize,
-        dbDevString = require('../db/config').getDevConnectionString(),
         sequelize   = null,
         HEROKU_DB_NAME = 'HEROKU_POSTGRESQL_ONYX_URL',
         POSTGRES_REGEX = /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/;
@@ -8,7 +7,7 @@ if (!global.hasOwnProperty('db')) {
     if (process.env[HEROKU_DB_NAME]) { // on heroku
         var match = process.env[HEROKU_DB_NAME].match(POSTGRES_REGEX);
     } else { // on the local machine
-        var match = dbDevString.match(POSTGRES_REGEX);
+        var match = require('../db/config').getDevConnectionString().match(POSTGRES_REGEX);
     }
 
     sequelize = new Sequelize(match[5], match[1], match[2], {
