@@ -5,8 +5,10 @@
     "express": "3.1.x",
     "jade": "*",
     "stylus": "*",
-    "model": "~0.2.5",
-    "nib": "*"
+    "nib": "*",
+    "sequelize": "~1.6.0",
+    "pg": "~2.2.0",
+    "sequelize-postgres": "~1.7.0-alpha2"
   },
   "engines": {
     "npm": "1.2.x"

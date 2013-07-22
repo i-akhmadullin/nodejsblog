@@ -1,18 +1,29 @@
+var db = require('./models');
+
 var posts = [
   { title: 'Foo', body: 'some foo bar' },
   { title: 'Foo bar', body: 'more foo bar' },
   { title: 'Foo bar baz', body: 'more foo bar baz' }
 ];
-exports.list = function(req, res){
-  res.render('index', { title: 'Posts', posts: posts });
+
+exports.create = function(req, res){
+  db.Post.create({ title: 'Dummy Post Title' }, { content: 'Dummy Post Content' }).success(function(post, created) {
+    console.log(post.values);
+    console.log(created);
+    res.render('index', { title: 'Posts', posts: post });
+  }).failure(function() {
+    console.log('Failed to create Post');
+    res.render('index', { title: 'Posts', posts: posts });
+  });
 };
 
-// exports.create = function(req, res){
-//   var params = {
-//     title:   'Post title',
-//     content: 'Post content'
-//   };
-//   var post = Post.create(params);
-//   res.render('post', { title : post } );
-//   // res.render('posts', { title: 'Posts', posts: posts });
-// };
+exports.list = function(req, res){
+  db.Post.create({ title: 'Dummy Post Title' }, { content: 'Dummy Post Content' }).success(function(post, created) {
+    console.log(post.values);
+    console.log(created);
+    res.render('index', { title: 'Posts', posts: post });
+  }).failure(function() {
+    console.log('Failed to create or get Post');
+    res.render('index', { title: 'Posts', posts: posts });
+  });
+};
