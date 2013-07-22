@@ -20,12 +20,8 @@ if (!global.hasOwnProperty('db')) {
 
     global.db = {
         Sequelize: Sequelize,
-        sequelize: sequelize,
+        sequelize: sequelize//,
 
-        Post: sequelize.define('Post', {
-            title: Sequelize.STRING,
-            content: Sequelize.TEXT
-        })
         // Post:      sequelize.import(__dirname + '/post')
 
         // add your other models here

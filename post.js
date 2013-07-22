@@ -6,8 +6,13 @@ var posts = [
   { title: 'Foo bar baz', body: 'more foo bar baz' }
 ];
 
+var Post = db.sequelize.define('Post', {
+    title: db.Sequelize.STRING,
+    content: db.Sequelize.TEXT
+});
+
 exports.create = function(req, res){
-  db.Post.create({ title: 'Dummy Post Title' }, { content: 'Dummy Post Content' }).success(function(post, created) {
+  Post.create({ title: 'Dummy Post Title' }, { content: 'Dummy Post Content' }).success(function(post, created) {
     console.log(post.values);
     console.log(created);
     res.render('index', { title: 'Posts', posts: post });
@@ -18,7 +23,7 @@ exports.create = function(req, res){
 };
 
 exports.list = function(req, res){
-  db.Post.create({ title: 'Dummy Post Title' }, { content: 'Dummy Post Content' }).success(function(post, created) {
+  Post.create({ title: 'Dummy Post Title' }, { content: 'Dummy Post Content' }).success(function(post, created) {
     console.log(post.values);
     console.log(created);
     res.render('index', { title: 'Posts', posts: post });
