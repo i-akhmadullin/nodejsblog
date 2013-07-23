@@ -24,8 +24,8 @@ exports.createPost = function(req, res){
 
 exports.list = function(req, res){
   db.Post.findAll()
-    .success(function(post, created){
-      console.log('/list post.values ', post.values);
+    .success(function(post){
+      console.log('/list post ', post);
       res.render('index', { title: 'Posts', posts: post });
     }).fail(function(){
       console.log('Failed to list Posts');
@@ -34,11 +34,11 @@ exports.list = function(req, res){
 };
 
 exports.view = function(req, res){
+  console.log('req.params.id', req.params.id);
   db.Post.find(req.params.id)
-    .success(function(post, created){
+    .success(function(post){
       console.log('/view post ', post);
-      // console.log('', created);
-      res.render('posts/view', { title: 'Post view', post: post });
+      res.render('posts/view', { title: 'Post view', post_title: post.title, post_content: post.content });
     }).fail(function(){
       console.log('Failed to list Posts');
       res.render('posts', { title: 'Posts', posts: posts });
