@@ -14,4 +14,4 @@ block sidebar
     h1 Recent posts
     - each post in posts
       p
-        a(href="#")= post.title
+        a(href="/post/#{post.id}")= post.title
