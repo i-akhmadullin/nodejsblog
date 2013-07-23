@@ -8,14 +8,13 @@ var posts = [
 
 //new
 exports.create = function(req, res){
-  res.render('post_new', { title: 'Create new Post' });
+  res.render('posts/new', { title: 'Create new Post' });
 };
 exports.createPost = function(req, res){
   db.Post
     .create({ title: req.param('title') , content: req.param('content') })
-    .success(function(post, created){
+    .success(function(post){
       console.log(post.values);
-      console.log(created);
       res.redirect('/');
     }).fail(function(){
       console.log('Failed to create Post');
@@ -25,9 +24,8 @@ exports.createPost = function(req, res){
 
 exports.list = function(req, res){
   db.Post.findAll()
-    .success(function(post, created){
-      console.log(post.values);
-      console.log(created);
+    .done(function(post){
+      console.log('/list post.values ', post.values);
       res.render('index', { title: 'Posts', posts: post });
     }).fail(function(){
       console.log('Failed to list Posts');
@@ -37,10 +35,10 @@ exports.list = function(req, res){
 
 exports.view = function(req, res){
   db.Post.find(req.params.id)
-    .success(function(post, created){
-      console.log(post.values);
-      console.log(created);
-      res.render('posts/view', { title: 'Post - ' + post.title, post: post });
+    .done(function(post){
+      console.log('/view post.values', post.values);
+      // console.log('', created);
+      res.render('posts/view', { title: 'Post view', post: post });
     }).fail(function(){
       console.log('Failed to list Posts');
       res.render('posts', { title: 'Posts', posts: posts });
