@@ -36,7 +36,7 @@ exports.list = function(req, res){
 exports.view = function(req, res){
   db.Post.find(req.params.id)
     .success(function(post, created){
-      console.log('/view post.values ', post.values);
+      console.log('/view post ', post);
       // console.log('', created);
       res.render('posts/view', { title: 'Post view', post: post });
     }).fail(function(){
