@@ -1,14 +1,14 @@
 extend layout
+
 block content
   p
-    | Vivamus hendrerit arcu sed erat molestie
-  p
-    | Donec congue lacinia dui, a porttitor
-    | lectus condimentum laoreet. Nunc eu
+    | Last posts:
+
   - each post in posts
     .post__item
       .post__title= post.title
-      .post__body= post.body 
+      .post__body= post.content
+
 block sidebar
   .widget
     h1 Sidebar
