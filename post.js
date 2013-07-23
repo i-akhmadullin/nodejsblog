@@ -17,7 +17,7 @@ exports.create = function(req, res){
 };
 
 exports.createPost = function(req, res){
-  Post.create({ title: req.title , content: req.content }).success(function(post, created) {
+  Post.create({ title: req.param('title') , content: req.param('req.content') }).success(function(post, created) {
     console.log(post.values);
     console.log(created);
     res.redirect('/');
