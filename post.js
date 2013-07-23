@@ -11,14 +11,19 @@ var Post = db.sequelize.define('Post', {
     content: db.Sequelize.TEXT
 });
 
+//new
 exports.create = function(req, res){
-  Post.create({ title: 'Dummy Post Title' , content: 'Dummy Post Content' }).success(function(post, created) {
+  res.render('post_new', { title: 'Create new Post' });
+};
+
+exports.createPost = function(req, res){
+  Post.create({ title: req.title , content: req.content }).success(function(post, created) {
     console.log(post.values);
     console.log(created);
-    res.render('index', { title: 'Posts', posts: post });
-  }).failure(function() {
+    res.redirect('/');
+  }).fail(function() {
     console.log('Failed to create Post');
-    res.render('index', { title: 'Posts', posts: posts });
+    res.redirect('/');
   });
 };
 
@@ -27,8 +32,8 @@ exports.list = function(req, res){
     console.log(post.values);
     console.log(created);
     res.render('index', { title: 'Posts', posts: post });
-  }).failure(function() {
-    console.log('Failed to create or get Post');
+  }).fail(function() {
+    console.log('Failed to list Posts');
     res.render('index', { title: 'Posts', posts: posts });
   });
 };

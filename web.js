@@ -22,9 +22,9 @@ app.use(stylus.middleware({
     src: __dirname + '/public',
     compile: compile
 }));
-// if ('development' === app.get('env')) {
+if ('development' === app.get('env')) {
     app.use(express.errorHandler());
-// }
+}
 app.use(express.static(__dirname + '/public'));
 
 
@@ -36,10 +36,11 @@ app.all('/posts', post.list);
 // app.get('/post/:id/view', post.view);
 // app.get('/post/:id/edit', post.edit);
 // app.put('/post/:id/edit', post.update);
-app.put('/post/create',   post.create);
+app.get('/post/create',   post.create);
+app.put('/post/create',   post.createPost);
 
 
-db.sequelize.sync({force: true}).complete(function(err) {
+db.sequelize.sync().complete(function(err) {
     if (err) {
         throw err;
     } else {
