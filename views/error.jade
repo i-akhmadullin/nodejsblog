@@ -1,0 +1,10 @@
+extend layout
+
+block content
+  h1 #{error.title}
+  p #{error.msg}
+  p: a(href="#{error.link_url}") #{error.link_txt}
+
+block sidebar
+  .widget
+    

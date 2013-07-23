@@ -2,10 +2,11 @@
 html
   head
     title #{title} - Blog
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic|PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic')
     link(rel='stylesheet', href='/css/style.css')
   body
     header
-      h1 Simple Blog
+      a(href="/"): h1 Simple Blog
     .container
       .main-content
         block content

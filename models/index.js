@@ -15,7 +15,7 @@ if (!global.hasOwnProperty('db')) {
         protocol: 'postgres',
         port:     match[4],
         host:     match[3],
-        logging:  console.log //false
+        logging:  false
     });
 
     global.db = {

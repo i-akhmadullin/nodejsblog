@@ -6,12 +6,13 @@ block content
 
   - each post in posts
     .post__item
-      .post__title= post.title
+      a(href="/post/#{post.id}").post__title= post.title
       .post__body= post.content
 
 block sidebar
   .widget
+    p: a(href="/post/new")#post_new New post
     h1 Recent posts
     - each post in posts
       p
-        a(href="#")= post.title
+        a(href="/post/#{post.id}")= post.title

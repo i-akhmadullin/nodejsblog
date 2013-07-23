@@ -1,13 +1,13 @@
-extend layout
+extend ../layout
 
 block content
-  form(method="post")
+  form(method="post", action="")
     div
-      span Title:
+      label(for="postTitle") Title:
       input(name="title", id="postTitle")
     div
-      span Content:
+      label(for="postContent") Content:
       textarea(name="content", id="postContent", rows="20")
 
     #postSubmit
-      input(type="submit", value="Send")
+      input(type="submit", value="Publish post")

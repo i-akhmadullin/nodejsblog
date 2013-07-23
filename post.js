@@ -1,48 +1,62 @@
 var db = require('./models');
 
-var posts = [
-  { title: 'Foo', body: 'some foo bar' },
-  { title: 'Foo bar', body: 'more foo bar' },
-  { title: 'Foo bar baz', body: 'more foo bar baz' }
-];
-
 //new
-exports.create = function(req, res){
-  res.render('post_new', { title: 'Create new Post' });
+exports.new = function(req, res){
+  res.render('posts/new', { title: 'Create new Post' });
 };
-exports.createPost = function(req, res){
+exports.newPost = function(req, res){
+  // var postID;
+
   db.Post
     .create({ title: req.param('title') , content: req.param('content') })
-    .success(function(post, created){
-      console.log(post.values);
-      console.log(created);
-      res.redirect('/');
+    .success(function(post){
+      // postID = post.id;
+      console.log('post.values ', post.values);
+      console.log('post.id ',     post.id);
+      
     }).fail(function(){
       console.log('Failed to create Post');
       res.redirect('/');
     });
-};
 
+    setTimeout(function(){
+      res.redirect('/');
+      // res.render('post/' + postID);
+    });
+};
 exports.list = function(req, res){
   db.Post.findAll()
-    .success(function(post, created){
-      console.log(post.values);
-      console.log(created);
+    .success(function(post){
+      console.log('/list post ', post);
       res.render('index', { title: 'Posts', posts: post });
     }).fail(function(){
       console.log('Failed to list Posts');
-      res.render('index', { title: 'Posts', posts: posts });
+      res.redirect('/');
     });
 };
-
 exports.view = function(req, res){
-  db.Post.find(req.post.id)
-    .success(function(post, created){
-      console.log(post.values);
-      console.log(created);
-      res.render('posts/view', { title: 'Viewing user ' + req.post.title, content: req.post.content });
+  db.Post.find(req.params.id)
+    .success(function(post){
+      console.log('/view post ', post);
+      res.render('posts/view', { title: 'Post view', post: post });
     }).fail(function(){
-      console.log('Failed to list Posts');
-      res.render('posts', { title: 'Posts', posts: posts });
+      console.log('Failed to view post');
+      res.redirect('/');
+    });
+};
+exports.delete = function(req, res){
+  db.Post.find(req.params.id)
+    .success(function(post){
+      console.log('deleting post with id %s', post.id);
+      post.destroy().success(function(){
+        console.log('post deleted', post);
+        res.redirect('/');
+      }).fail(function(){
+        // error case can't delete post
+        res.redirect('/');
+      });
+    }).fail(function(){
+      console.log('Failed to get post for deletion');
+      res.redirect('/');
     });
 };
