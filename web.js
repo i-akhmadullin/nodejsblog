@@ -37,7 +37,7 @@ app.all('/posts', post.list);
 // app.get('/post/:id/edit', post.edit);
 // app.put('/post/:id/edit', post.update);
 app.get('/post/create',   post.create);
-app.put('/post/create',   post.createPost);
+app.post('/post/create',   post.createPost);
 
 
 db.sequelize.sync().complete(function(err) {
