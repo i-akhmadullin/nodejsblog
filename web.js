@@ -32,7 +32,7 @@ app.get('/', post.list);
 // Posts
 app.all('/posts', post.list);
 // app.all('/post/:id/:op?', post.load);
-// app.get('/post/:id',      post.view);
+app.get('/post/:id',      post.view);
 // app.get('/post/:id/view', post.view);
 // app.get('/post/:id/edit', post.edit);
 // app.put('/post/:id/edit', post.update);

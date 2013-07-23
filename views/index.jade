@@ -11,10 +11,7 @@ block content
 
 block sidebar
   .widget
-    h1 Sidebar
-    p
-      | Sed auctor neque eu tellus rhoncus ut
-      | eleifend nibh porttitor. Ut in nulla enim.
-    p
-      | Vivamus hendrerit arcu sed erat molestie
-      | vehicula.
+    h1 Recent posts
+    - each post in posts
+      p
+        a(href="#")= post.title
