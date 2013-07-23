@@ -36,11 +36,11 @@ exports.list = function(req, res){
 };
 
 exports.view = function(req, res){
-  db.Post.find(req.post.id)
+  db.Post.find(req.params.id)
     .success(function(post, created){
       console.log(post.values);
       console.log(created);
-      res.render('posts/view', { title: 'Viewing user ' + req.post.title, content: req.post.content });
+      res.render('posts/view', { title: 'Post - ' + post.title, post: post });
     }).fail(function(){
       console.log('Failed to list Posts');
       res.render('posts', { title: 'Posts', posts: posts });
